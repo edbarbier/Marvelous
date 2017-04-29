@@ -17,16 +17,32 @@ enum EndPoint: String {
     case characters = "characters"
 }
 
+enum OrderBy: String {
+    case name = "name"
+}
+
 struct MarvelAPI {
 
     private static let baseURL = "https://gateway.marvel.com:443/v1/public/"
     private static let apiKey = "468cfa39e994bdbd4398928bb0c9eccc"
     
-    private static func marvelApiURL(endpoint: EndPoint) -> URL {
-        let urlString = "\(baseURL)\(endpoint)?apikey=\(apiKey)"
+    static func marvelApiURL(endpoint: EndPoint, orderBy: OrderBy, limit: Int?) -> URL {
+        
+        var urlString = String()
+        
+        if limit != nil {
+            
+            urlString = "\(baseURL)\(endpoint)?orderBy=\(orderBy)&limit=\(limit!)&apikey=\(apiKey)"
+
+        } else {
+            
+            urlString = "\(baseURL)\(endpoint)?orderBy=\(orderBy)&apikey=\(apiKey)"
+        }
+        
         return URL(string: urlString)!
     }
     
+    //Construct Array of Character based on JSON
     static func characters(fromJSON data: Data) -> CharactersResult {
         
         do {
@@ -36,9 +52,10 @@ struct MarvelAPI {
             let jsonDictionary = jsonObject as? [AnyHashable:Any],
                 let jsonCharacters = jsonDictionary["results"] as? [[String: Any]] else {
             
-              //The JSON structure didn't match our expectations
               return .failure(MarvelAPIError.invalidJSONData)
             }
+            
+            print(jsonCharacters)
             
             var characters = [Character]()
             
@@ -57,13 +74,13 @@ struct MarvelAPI {
                 return .success(characters)
             }
             
-            
         } catch let error {
             return .failure(error)
         }
         
     }
     
+    //Creating Character object based on JSON
     static func character(fromJSON json: [String:Any]) -> Character? {
         
         guard
