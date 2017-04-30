@@ -8,9 +8,18 @@
 
 import UIKit
 
+enum ImageResult {
+    case success(UIImage)
+    case failure(Error)
+}
+
 enum CharactersResult {
     case success([Character])
     case failure(Error)
+}
+
+enum ImageError: Error {
+    case imageCreationError
 }
 
 class CharacterManager {
@@ -32,6 +41,40 @@ class CharacterManager {
         return MarvelAPI.characters(fromJSON: jsonData)
     }
     
+    func processImageRequest(data: Data?, error: Error?) -> ImageResult {
+        
+        guard
+            let imageData = data,
+            let image = UIImage(data: imageData) else {
+                
+                // Couldn't create an image
+                if data == nil {
+                    return .failure(error!)
+                } else {
+                    return .failure(ImageError.imageCreationError)
+                }
+        }
+        
+        return .success(image)
+    }
+    
+    func fetchImage(for character: Character, completion: @escaping (ImageResult) -> Void) {
+        
+        let imageUrlString = "\(character.thumbnailUrl["path"]!).\(character.thumbnailUrl["extension"]!)"
+        let imageUrl = URL(string: imageUrlString)
+        print("Fetching image for url = \(imageUrl!)")
+        let request = URLRequest(url: imageUrl!)
+        
+        let task = session.dataTask(with: request) {
+            
+            (data, response, error) -> Void in
+        
+            let result = self.processImageRequest(data: data, error: error)
+            completion(result)
+        }
+        task.resume()
+    }
+    
     func getCharacters(completion: @escaping (CharactersResult) -> Void) {
         
         let url = MarvelAPI.marvelApiURL(endpoint: .characters, orderBy: .name, limit: 50)
@@ -50,7 +93,7 @@ class CharacterManager {
         
     }
     
-    //FROM JSON FILE 
+    //FROM JSON FILE to work around MARVEL DEVELOPER Site being down.
     
     func getCharactersFromJSONFile(completion: @escaping (CharactersResult) -> Void) {
         
@@ -71,9 +114,6 @@ class CharacterManager {
             print(err.localizedDescription)
             
         }
-        
-        
-        
     }
     
     

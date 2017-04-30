@@ -79,12 +79,20 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
                 character = charactersArray[indexPath.row]
             }
             
-            cell.config(character: character, image: nil)
-            
+            characterManager.fetchImage(for: character, completion: { (imageResult) in
+                
+                switch imageResult {
+                    
+                case let .success(image):
+                    cell.config(character: character, image: image)
+
+                case let .failure(error):
+                    cell.config(character: character, image: nil)
+                    print("Error downloading image: \(error)")
+                }
+            })
             return cell
         } else {
-            
-            print("We are here")
             return UICollectionViewCell()
         }
     }
