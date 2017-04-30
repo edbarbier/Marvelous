@@ -42,26 +42,26 @@ struct MarvelAPI {
         return URL(string: urlString)!
     }
     
-    //Construct Array of Character based on JSON
+    //Construct Array of Characters based on JSON
     static func characters(fromJSON data: Data) -> CharactersResult {
         
         do {
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers])
             
+            //print("JSON Object received from API = \(jsonObject)")
+            
             guard
-            let jsonDictionary = jsonObject as? [AnyHashable:Any],
-                let jsonCharacters = jsonDictionary["results"] as? [[String: Any]] else {
+            let jsonDictionary = jsonObject as? [AnyHashable:Any], let jsonData = jsonDictionary["data"] as? [AnyHashable:Any],
+                let jsonCharacters = jsonData["results"] as? [[String: Any]] else {
             
               return .failure(MarvelAPIError.invalidJSONData)
             }
-            
-            print(jsonCharacters)
             
             var characters = [Character]()
             
             for jsonCharacter in jsonCharacters {
                 
-                if let character = character(fromJSON: jsonCharacter) {
+                if let character = character2(fromJSON: jsonCharacter) {
                     characters.append(character)
                 }
             }
@@ -87,7 +87,7 @@ struct MarvelAPI {
             let id = json[KEY_ID] as? String,
             let name = json[KEY_NAME] as? String,
             let desc = json[KEY_DESC] as? String,
-            let thumbnailUrl = json[KEY_THUMBNAILURL] as? String,
+            let thumbnailUrl = json[KEY_THUMBNAILURL] as? [String:Any],
             let comics = json[KEY_COMICS] as? [String:Any],
             let series = json[KEY_SERIES] as? [String:Any],
             let stories = json[KEY_STORIES] as? [String:Any],
@@ -99,6 +99,22 @@ struct MarvelAPI {
         }
         
         return Character(id: id, name: name, desc: desc, thumbnailUrl: thumbnailUrl, comics: comics, series: series, stories: stories, urls: urls)
+    }
+    
+    static func character2(fromJSON json: [String:Any]) -> Character? {
+        
+        var characterId = String()
+        var characterDict = Dictionary<String,Any>()
+        
+        if let id = json[KEY_ID] as? String { characterId = id }
+        if let name = json[KEY_NAME] as? String { characterDict[KEY_NAME] = name }
+        if let desc = json[KEY_DESC] as? String { characterDict[KEY_DESC] = desc }
+        
+        //TODO: Add the rest of the data 
+        
+        let char = Character(id: characterId, dict: characterDict)
+                
+        return char
     }
     
 }

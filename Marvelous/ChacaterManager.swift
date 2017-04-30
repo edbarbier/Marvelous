@@ -15,6 +15,8 @@ enum CharactersResult {
 
 class CharacterManager {
     
+    var characters: [Character]!
+    
     private let session: URLSession = {
         let config = URLSessionConfiguration.default
         return URLSession(configuration: config)
@@ -24,6 +26,7 @@ class CharacterManager {
     func processCharactersRequest(data: Data?, error: Error?) -> CharactersResult {
         
         guard let jsonData = data else {
+                        
             return .failure(error!)
         }
         return MarvelAPI.characters(fromJSON: jsonData)
@@ -44,6 +47,32 @@ class CharacterManager {
             }
         })
         task.resume()
+        
+    }
+    
+    //FROM JSON FILE 
+    
+    func getCharactersFromJSONFile(completion: @escaping (CharactersResult) -> Void) {
+        
+        do {
+            
+            let path = Bundle.main.path(forResource: "marvel", ofType: "json")!
+            
+            let data = try (NSData(contentsOfFile: path, options: NSData.ReadingOptions.mappedIfSafe))
+
+            let result = self.processCharactersRequest(data: data as Data, error: nil)
+            
+            OperationQueue.main.addOperation {
+                completion(result)
+            }
+            
+        } catch let err {
+            
+            print(err.localizedDescription)
+            
+        }
+        
+        
         
     }
     

@@ -10,14 +10,14 @@ import UIKit
 
 class Character: NSObject {
     
-    fileprivate let _id: String
-    fileprivate let _name: String
-    fileprivate let _desc: String
-    fileprivate let _thumbnailUrl: String
-    fileprivate let _comics: [String: Any]
-    fileprivate let _series: [String: Any]
-    fileprivate let _stories: [String: Any]
-    fileprivate let _urls: [String: Any]
+    fileprivate var _id: String!
+    fileprivate var _name: String!
+    fileprivate var _desc: String!
+    fileprivate var _thumbnailUrl: [String:Any]!
+    fileprivate var _comics: [String: Any]!
+    fileprivate var _series: [String: Any]!
+    fileprivate var _stories: [String: Any]!
+    fileprivate var _urls: [String: Any]!
     
     var id: String {
         return _id
@@ -31,7 +31,7 @@ class Character: NSObject {
         return _desc
     }
     
-    var thumbnailUrl: String {
+    var thumbnailUrl: [String:Any] {
         return _thumbnailUrl
     }
     
@@ -51,7 +51,7 @@ class Character: NSObject {
         return _urls
     }
     
-    init(id: String, name: String, desc: String, thumbnailUrl: String, comics: [String:Any], series: [String:Any], stories: [String:Any], urls: [String:Any]) {
+    init(id: String, name: String, desc: String, thumbnailUrl: [String:Any], comics: [String:Any], series: [String:Any], stories: [String:Any], urls: [String:Any]) {
         
         self._id = id
         self._name = name
@@ -61,6 +61,41 @@ class Character: NSObject {
         self._series = series
         self._stories = stories
         self._urls = urls 
+        
+    }
+    
+    init(id: String, dict: [String:Any]) {
+        
+        self._id = id
+        
+        if let name = dict[KEY_NAME] as? String {
+            
+            self._name = name
+        }
+        
+        if let desc = dict[KEY_DESC] as? String {
+            self._desc = desc
+        }
+        
+        if let thumbDict = dict[KEY_THUMBNAILURL] as? [String:Any] {
+            self._thumbnailUrl = thumbDict
+        }
+        
+        if let comics = dict[KEY_COMICS] as? [String:Any] {
+            self._comics = comics
+        }
+        
+        if let series = dict[KEY_SERIES] as? [String:Any] {
+            self._series = series
+        }
+        
+        if let stories = dict[KEY_STORIES] as? [String:Any] {
+            self._stories = stories
+        }
+        
+        if let urls = dict[KEY_URLS] as? [String:Any] {
+            self._urls = urls
+        }
         
     }
     

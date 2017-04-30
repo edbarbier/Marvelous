@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC943BB31EB4F30A003A4107 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC943BB21EB4F30A003A4107 /* CharacterCell.swift */; };
+		FC943BD71EB5E6A8003A4107 /* marvel.json in Resources */ = {isa = PBXBuildFile; fileRef = FC943BD61EB5E6A8003A4107 /* marvel.json */; };
 		FC978E871EB39CDE000C00C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC978E861EB39CDE000C00C0 /* AppDelegate.swift */; };
 		FC978E8C1EB39CDE000C00C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC978E8A1EB39CDE000C00C0 /* Main.storyboard */; };
 		FC978E8E1EB39CDE000C00C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC978E8D1EB39CDE000C00C0 /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC943BB21EB4F30A003A4107 /* CharacterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
+		FC943BD61EB5E6A8003A4107 /* marvel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = marvel.json; sourceTree = "<group>"; };
 		FC978E831EB39CDE000C00C0 /* Marvelous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvelous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC978E861EB39CDE000C00C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC978E8B1EB39CDE000C00C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC943BB11EB4F2F4003A4107 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FC943BB21EB4F30A003A4107 /* CharacterCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		FC978E7A1EB39CDE000C00C0 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +93,7 @@
 			children = (
 				FC978E9D1EB3A223000C00C0 /* KeepCalm-Medium.ttf */,
 				FCEC18E21EB3F10D00BB27C0 /* Constants.swift */,
+				FC943BD61EB5E6A8003A4107 /* marvel.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -96,6 +109,7 @@
 		FC978EA01EB3A384000C00C0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FC943BB11EB4F2F4003A4107 /* Cells */,
 				FC978E8A1EB39CDE000C00C0 /* Main.storyboard */,
 				FC978E8F1EB39CDE000C00C0 /* LaunchScreen.storyboard */,
 			);
@@ -179,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC943BD71EB5E6A8003A4107 /* marvel.json in Resources */,
 				FC978E911EB39CDE000C00C0 /* LaunchScreen.storyboard in Resources */,
 				FC978E8E1EB39CDE000C00C0 /* Assets.xcassets in Resources */,
 				FC978E8C1EB39CDE000C00C0 /* Main.storyboard in Resources */,
@@ -196,6 +211,7 @@
 				FCEC18E01EB3E73000BB27C0 /* MarvelAPI.swift in Sources */,
 				FCEC18DC1EB3E04E00BB27C0 /* Character.swift in Sources */,
 				FC978E9C1EB3A011000C00C0 /* CharactersViewController.swift in Sources */,
+				FC943BB31EB4F30A003A4107 /* CharacterCell.swift in Sources */,
 				FCEC18DE1EB3E40000BB27C0 /* ChacaterManager.swift in Sources */,
 				FCEC18E31EB3F10D00BB27C0 /* Constants.swift in Sources */,
 				FC978E871EB39CDE000C00C0 /* AppDelegate.swift in Sources */,

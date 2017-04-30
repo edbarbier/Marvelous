@@ -19,3 +19,7 @@ import Foundation
     let KEY_SERIES = "series"
     let KEY_STORIES = "stories"
     let KEY_URLS = "urls"
+
+//MARK: - CELL IDENTIFIER 
+
+    let CELL_CHARACTER = "CharacterCell"
