@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Foundation 
 
-class CharactersViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class CharactersViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIScrollViewDelegate {
     
     
     //MARK: - @IBOUTLETS
@@ -21,7 +22,7 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
     static var imageCache = NSCache<AnyObject, AnyObject>()
     
     var charactersArray = [Character]()
-    var filteredCharacters = [Character]()
+    var filteredCharactersArray = [Character]()
     
     var inSearchMode = false
 
@@ -31,6 +32,7 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        searchBar.delegate = self
         
         let insets = UIEdgeInsetsMake(20.0, 0, 20.0, 0.0)
         collectionView.contentInset = insets
@@ -57,6 +59,7 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     //MARK: - COLLECTION VIEW DELEGATE METHODS 
+    //TODO: - Extract these methods and create a DataSource file for the CollectionView.
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -64,7 +67,10 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        print("Nmber of items = \(charactersArray.count)")
+        if inSearchMode {
+            
+            return filteredCharactersArray.count
+        }
         
         return charactersArray.count
         
@@ -77,7 +83,7 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
             var character: Character!
             
             if inSearchMode {
-                character = filteredCharacters[indexPath.row]
+                character = filteredCharactersArray[indexPath.row]
             } else {
                 character = charactersArray[indexPath.row]
             }
@@ -101,6 +107,7 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
                         cell.config(character: character, image: image)
                         print("Image saved in cache")
                         CharactersViewController.imageCache.setObject(image, forKey: imgUrl as AnyObject)
+                        collectionView.reloadData()
                         
                     case let .failure(error):
                         cell.config(character: character, image: nil)
@@ -122,6 +129,79 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
         let size = CGSize(width: screenSize.width/2 - 30, height: screenSize.width/2 - 30)
         
         return size
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        var charTapped: Character!
+        
+        if inSearchMode {
+            
+            charTapped = filteredCharactersArray[indexPath.row]
+            
+        } else {
+            
+            charTapped = charactersArray[indexPath.row]
+        }
+        
+        performSegue(withIdentifier: SEGUE_DETAILS, sender: charTapped)
+    }
+    
+    //MARK: - SCROLLVIEW DELEGATE METHODS
+    
+    //Dismissing keyboard when collectionView is scrolled
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView == collectionView {
+            
+            view.endEditing(true)
+        }
+    }
+    
+    //MARK: - SEARCH BAR DELEGATE METHOD 
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        view.endEditing(true)
+    
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchBar.text == nil || searchBar.text == "" {
+            
+            inSearchMode = false
+            view.endEditing(true)
+            collectionView.reloadData()
+        } else {
+            
+            inSearchMode = true
+            let searchString = searchBar.text!.lowercased()
+            print("SearchString: \(searchString)")
+            filteredCharactersArray = charactersArray.filter({$0.name.lowercased().range(of: searchString) != nil })
+            collectionView.reloadData()
+        }
+    }
+    
+    //MARK: - NAVIGATION 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == SEGUE_DETAILS {
+            
+            if let vc = segue.destination as? CharacterDetailViewController {
+                
+                if let character = sender as? Character {
+                    
+                    vc.character = character
+                    
+                    let imgUrl = characterManager.getCharacterImgUrl(from: character)
+                    let img = CharactersViewController.imageCache.object(forKey: imgUrl as AnyObject)
+                    
+                    vc.characterImage = img as! UIImage! 
+                }
+            }
+        }
     }
     
 }

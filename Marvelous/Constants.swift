@@ -23,3 +23,8 @@ import Foundation
 //MARK: - CELL IDENTIFIER 
 
     let CELL_CHARACTER = "CharacterCell"
+
+
+//MARK: - SEGUE IDENTIFIER 
+
+    let SEGUE_DETAILS = "CharacterDetailViewController"

@@ -26,7 +26,7 @@ class CharacterCell: UICollectionViewCell {
         self.character = character
         
         if let name = self.character.name as String? {
-            characterNameLabel.text = name
+            characterNameLabel.text = name.uppercased()
         }
         
         if image != nil {
