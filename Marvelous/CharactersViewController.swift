@@ -18,8 +18,11 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
     //MARK: - VARIABLES
     var characterManager: CharacterManager!
 
+    static var imageCache = NSCache<AnyObject, AnyObject>()
+    
     var charactersArray = [Character]()
     var filteredCharacters = [Character]()
+    
     var inSearchMode = false
 
     //MARK: - VIEW LIFE CYCLE
@@ -79,18 +82,33 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
                 character = charactersArray[indexPath.row]
             }
             
-            characterManager.fetchImage(for: character, completion: { (imageResult) in
+            let imgUrl = characterManager.getCharacterImgUrl(from: character)
+            
+            //Checking if we can use an image in the cache
+            if let cachedImg = CharactersViewController.imageCache.object(forKey: imgUrl as AnyObject) as? UIImage {
                 
-                switch imageResult {
-                    
-                case let .success(image):
-                    cell.config(character: character, image: image)
+                cell.config(character: character, image: cachedImg)
+                
+                print("Image used from cache")
+                
+            } else {
+              
+                //Downloading image for character
 
-                case let .failure(error):
-                    cell.config(character: character, image: nil)
-                    print("Error downloading image: \(error)")
-                }
-            })
+                characterManager.fetchImage(for: character, completion: { (imageResult) in
+                    switch imageResult {
+                    case let .success(image):
+                        cell.config(character: character, image: image)
+                        print("Image saved in cache")
+                        CharactersViewController.imageCache.setObject(image, forKey: imgUrl as AnyObject)
+                        
+                    case let .failure(error):
+                        cell.config(character: character, image: nil)
+                        print("Error downloading image: \(error)")
+                    }
+                })
+            }
+            
             return cell
         } else {
             return UICollectionViewCell()

@@ -54,16 +54,19 @@ class CharacterManager {
                     return .failure(ImageError.imageCreationError)
                 }
         }
-        
+                
         return .success(image)
     }
     
     func fetchImage(for character: Character, completion: @escaping (ImageResult) -> Void) {
         
-        let imageUrlString = "\(character.thumbnailUrl["path"]!).\(character.thumbnailUrl["extension"]!)"
-        let imageUrl = URL(string: imageUrlString)
-        print("Fetching image for url = \(imageUrl!)")
-        let request = URLRequest(url: imageUrl!)
+//        let imageUrlString = "\(character.thumbnailUrl["path"]!).\(character.thumbnailUrl["extension"]!)"
+//        let imageUrl = URL(string: imageUrlString)
+//        print("Fetching image for url = \(imageUrl!)")
+        
+        let imgUrl = URL(string: self.getCharacterImgUrl(from: character))
+        
+        let request = URLRequest(url: imgUrl!)
         
         let task = session.dataTask(with: request) {
             
@@ -114,6 +117,29 @@ class CharacterManager {
             print(err.localizedDescription)
             
         }
+    }
+    
+    func getCharacterImgUrl(from character: Character) -> String {
+        
+        var url = String()
+        
+        if let thumbnail = character.thumbnailUrl as [String:Any]? {
+            
+            guard
+                let path = thumbnail["path"] as? String,
+                let ext = thumbnail["extension"] as? String
+                else {
+                  
+                    return "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"
+            }
+            url = "\(path).\(ext)"
+
+        } else {
+            
+            return "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"
+        }
+
+        return url
     }
     
     
