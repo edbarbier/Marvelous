@@ -106,7 +106,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marvelous" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAB-0w-KOt">
-                                        <rect key="frame" x="128.5" y="26" width="119.5" height="26"/>
+                                        <rect key="frame" x="128" y="25" width="120" height="27"/>
                                         <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -119,6 +119,13 @@
                                     <constraint firstAttribute="bottom" secondItem="aAB-0w-KOt" secondAttribute="bottom" constant="12" id="ePf-iR-lUw"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="9sg-5E-pvc">
+                                <rect key="frame" x="167.5" y="313.5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="PCN-wh-O0G"/>
+                                    <constraint firstAttribute="width" constant="40" id="QBp-Mc-kV8"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -129,6 +136,8 @@
                             <constraint firstAttribute="trailing" secondItem="zev-Bh-96u" secondAttribute="trailing" id="Uf6-Hx-oSi"/>
                             <constraint firstItem="vjj-Vo-cdW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="V0D-Fd-B9s"/>
                             <constraint firstItem="vjj-Vo-cdW" firstAttribute="top" secondItem="ooL-K8-Ww3" secondAttribute="bottom" id="Vfc-wU-vXw"/>
+                            <constraint firstItem="9sg-5E-pvc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="cl3-Dj-OUY"/>
+                            <constraint firstItem="9sg-5E-pvc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ct4-xc-MPw"/>
                             <constraint firstItem="zev-Bh-96u" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ddN-8S-EwJ"/>
                             <constraint firstItem="ooL-K8-Ww3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="egO-xc-FnR"/>
                             <constraint firstItem="zev-Bh-96u" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="f3y-SI-yGj"/>
@@ -142,6 +151,7 @@
                     <connections>
                         <outlet property="collectionView" destination="vjj-Vo-cdW" id="rhT-hp-XVq"/>
                         <outlet property="searchBar" destination="ooL-K8-Ww3" id="SzI-Vf-Fhd"/>
+                        <outlet property="spinner" destination="9sg-5E-pvc" id="n4Q-69-cZx"/>
                         <segue destination="KdA-g0-bqb" kind="show" identifier="CharacterDetailViewController" id="WPj-Ly-hfh"/>
                     </connections>
                 </viewController>

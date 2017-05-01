@@ -15,6 +15,7 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
     //MARK: - @IBOUTLETS
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     //MARK: - VARIABLES
     var characterManager: CharacterManager!
@@ -37,7 +38,12 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
         let insets = UIEdgeInsetsMake(20.0, 0, 20.0, 0.0)
         collectionView.contentInset = insets
         
+        self.spinner.startAnimating()
+
+        
         characterManager.getCharacters { (characterResult) -> Void in
+            
+            
             switch characterResult {
             case let .success(characters):
                 
@@ -49,6 +55,10 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
                 }
                 
                 self.collectionView.reloadData()
+                
+                DispatchQueue.main.async {
+                    self.spinner.stopAnimating()
+                }
                 
                 print("Number of characters received from Marvel API: \(characters.count)")
                 
@@ -107,6 +117,7 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
                 //Downloading image for character
 
                 characterManager.fetchImage(for: character, completion: { (imageResult) in
+                   self.spinner.startAnimating()
                     switch imageResult {
                     case let .success(image):
                         cell.config(character: character, image: image)
@@ -115,12 +126,14 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
                         
                         DispatchQueue.main.async {
                             collectionView.reloadData()
+                            
                         }
                         
                         
                     case let .failure(error):
                         cell.config(character: character, image: nil)
                         print("Error downloading image: \(error)")
+                        
                     }
                 })
             }

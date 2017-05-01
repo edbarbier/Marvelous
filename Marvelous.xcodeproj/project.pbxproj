@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		FC25D4101EB674A900A636DD /* Swift-MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC25D40F1EB674A900A636DD /* Swift-MD5.swift */; };
 		FC943BB31EB4F30A003A4107 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC943BB21EB4F30A003A4107 /* CharacterCell.swift */; };
-		FC943BD71EB5E6A8003A4107 /* marvel.json in Resources */ = {isa = PBXBuildFile; fileRef = FC943BD61EB5E6A8003A4107 /* marvel.json */; };
 		FC943BDB1EB60CED003A4107 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC943BDA1EB60CED003A4107 /* CharacterDetailViewController.swift */; };
 		FC978E871EB39CDE000C00C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC978E861EB39CDE000C00C0 /* AppDelegate.swift */; };
 		FC978E8C1EB39CDE000C00C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC978E8A1EB39CDE000C00C0 /* Main.storyboard */; };
@@ -39,7 +38,6 @@
 		FC25D40F1EB674A900A636DD /* Swift-MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Swift-MD5.swift"; sourceTree = "<group>"; };
 		FC85D9051EB7499C00FB8A0B /* Marvelous-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Marvelous-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		FC943BB21EB4F30A003A4107 /* CharacterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
-		FC943BD61EB5E6A8003A4107 /* marvel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = marvel.json; sourceTree = "<group>"; };
 		FC943BDA1EB60CED003A4107 /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 		FC978E831EB39CDE000C00C0 /* Marvelous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvelous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC978E861EB39CDE000C00C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 			children = (
 				FC978E9D1EB3A223000C00C0 /* KeepCalm-Medium.ttf */,
 				FCEC18E21EB3F10D00BB27C0 /* Constants.swift */,
-				FC943BD61EB5E6A8003A4107 /* marvel.json */,
 				FC25D40F1EB674A900A636DD /* Swift-MD5.swift */,
 			);
 			name = Resources;
@@ -214,7 +211,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC943BD71EB5E6A8003A4107 /* marvel.json in Resources */,
 				FC978E911EB39CDE000C00C0 /* LaunchScreen.storyboard in Resources */,
 				FC978E8E1EB39CDE000C00C0 /* Assets.xcassets in Resources */,
 				FC978E8C1EB39CDE000C00C0 /* Main.storyboard in Resources */,
