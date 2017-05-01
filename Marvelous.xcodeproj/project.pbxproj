@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC25D4101EB674A900A636DD /* Swift-MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC25D40F1EB674A900A636DD /* Swift-MD5.swift */; };
 		FC943BB31EB4F30A003A4107 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC943BB21EB4F30A003A4107 /* CharacterCell.swift */; };
 		FC943BD71EB5E6A8003A4107 /* marvel.json in Resources */ = {isa = PBXBuildFile; fileRef = FC943BD61EB5E6A8003A4107 /* marvel.json */; };
 		FC943BDB1EB60CED003A4107 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC943BDA1EB60CED003A4107 /* CharacterDetailViewController.swift */; };
@@ -22,7 +23,21 @@
 		FCEC18E31EB3F10D00BB27C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC18E21EB3F10D00BB27C0 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		FC25D4D81EB743E200A636DD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		FC25D40F1EB674A900A636DD /* Swift-MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Swift-MD5.swift"; sourceTree = "<group>"; };
+		FC85D9051EB7499C00FB8A0B /* Marvelous-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Marvelous-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		FC943BB21EB4F30A003A4107 /* CharacterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		FC943BD61EB5E6A8003A4107 /* marvel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = marvel.json; sourceTree = "<group>"; };
 		FC943BDA1EB60CED003A4107 /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +101,7 @@
 				FC978E8D1EB39CDE000C00C0 /* Assets.xcassets */,
 				FC978E921EB39CDE000C00C0 /* Info.plist */,
 				FC978E9A1EB39ED4000C00C0 /* Resources */,
+				FC85D9051EB7499C00FB8A0B /* Marvelous-Bridging-Header.h */,
 			);
 			path = Marvelous;
 			sourceTree = "<group>";
@@ -96,6 +112,7 @@
 				FC978E9D1EB3A223000C00C0 /* KeepCalm-Medium.ttf */,
 				FCEC18E21EB3F10D00BB27C0 /* Constants.swift */,
 				FC943BD61EB5E6A8003A4107 /* marvel.json */,
+				FC25D40F1EB674A900A636DD /* Swift-MD5.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -146,6 +163,7 @@
 				FC978E7F1EB39CDE000C00C0 /* Sources */,
 				FC978E801EB39CDE000C00C0 /* Frameworks */,
 				FC978E811EB39CDE000C00C0 /* Resources */,
+				FC25D4D81EB743E200A636DD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -214,6 +232,7 @@
 				FCEC18E01EB3E73000BB27C0 /* MarvelAPI.swift in Sources */,
 				FCEC18DC1EB3E04E00BB27C0 /* Character.swift in Sources */,
 				FC978E9C1EB3A011000C00C0 /* CharactersViewController.swift in Sources */,
+				FC25D4101EB674A900A636DD /* Swift-MD5.swift in Sources */,
 				FC943BB31EB4F30A003A4107 /* CharacterCell.swift in Sources */,
 				FCEC18DE1EB3E40000BB27C0 /* ChacaterManager.swift in Sources */,
 				FC943BDB1EB60CED003A4107 /* CharacterDetailViewController.swift in Sources */,
@@ -289,6 +308,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Marvelous-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -331,6 +351,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Marvelous-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

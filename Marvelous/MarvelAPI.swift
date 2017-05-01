@@ -24,21 +24,27 @@ enum OrderBy: String {
 struct MarvelAPI {
 
     private static let baseURL = "https://gateway.marvel.com:443/v1/public/"
-    private static let apiKey = "468cfa39e994bdbd4398928bb0c9eccc"
+    private static let apiKey = "ae4fd56952df9c1455d573b2d4f3b93e"
+    private static let privateKey = "b12605d9e7e21ecf3c3b00238633dd06efbd9037"
     
     static func marvelApiURL(endpoint: EndPoint, orderBy: OrderBy, limit: Int?) -> URL {
         
         var urlString = String()
         
+        let ts = NSDate().timeIntervalSince1970.description
+        
+        
+        let hash = "\(ts)\(privateKey)\(apiKey)".md5()
+        
         if limit != nil {
             
-            urlString = "\(baseURL)\(endpoint)?orderBy=\(orderBy)&limit=\(limit!)&apikey=\(apiKey)"
+            urlString = "\(baseURL)\(endpoint)?orderBy=\(orderBy)&limit=\(limit!)&ts=\(ts)&apikey=\(apiKey)&hash=\(hash!)"
 
         } else {
             
-            urlString = "\(baseURL)\(endpoint)?orderBy=\(orderBy)&apikey=\(apiKey)"
+            urlString = "\(baseURL)\(endpoint)?orderBy=\(orderBy)&ts=\(ts)&apikey=\(apiKey)&hash=\(hash)"
         }
-        
+               
         return URL(string: urlString)!
     }
     

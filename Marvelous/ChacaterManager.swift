@@ -67,7 +67,7 @@ class CharacterManager {
         let imgUrl = URL(string: self.getCharacterImgUrl(from: character))
         
         let request = URLRequest(url: imgUrl!)
-        
+            
         let task = session.dataTask(with: request) {
             
             (data, response, error) -> Void in
@@ -80,7 +80,8 @@ class CharacterManager {
     
     func getCharacters(completion: @escaping (CharactersResult) -> Void) {
         
-        let url = MarvelAPI.marvelApiURL(endpoint: .characters, orderBy: .name, limit: 50)
+        let url = MarvelAPI.marvelApiURL(endpoint: .characters, orderBy: .name, limit: 100)
+        
         let request = URLRequest(url: url)
         
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in

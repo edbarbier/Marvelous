@@ -111,11 +111,20 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qM2-58-hXB">
+                                        <rect key="frame" x="314" y="24" width="47" height="30"/>
+                                        <state key="normal" title="Reload"/>
+                                        <connections>
+                                            <action selector="reloadCollectionView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x2i-Jq-jAF"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.46666666666666667" green="0.035294117647058823" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="qM2-58-hXB" firstAttribute="top" secondItem="MTa-Qw-S6j" secondAttribute="top" constant="24" id="ENK-pv-shh"/>
                                     <constraint firstItem="aAB-0w-KOt" firstAttribute="centerX" secondItem="MTa-Qw-S6j" secondAttribute="centerX" id="GZK-0l-gds"/>
                                     <constraint firstAttribute="height" constant="64" id="Kd9-EH-VbP"/>
+                                    <constraint firstAttribute="trailing" secondItem="qM2-58-hXB" secondAttribute="trailing" constant="14" id="axI-si-i4t"/>
                                     <constraint firstAttribute="bottom" secondItem="aAB-0w-KOt" secondAttribute="bottom" constant="12" id="ePf-iR-lUw"/>
                                 </constraints>
                             </view>
@@ -165,10 +174,10 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="281"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Weu-Mu-LRm">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="243"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="240.5"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCx-Bt-qXU">
-                                        <rect key="frame" x="166.5" y="263" width="42" height="18"/>
+                                        <rect key="frame" x="166.5" y="260.5" width="42" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

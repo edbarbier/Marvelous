@@ -37,7 +37,7 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
         let insets = UIEdgeInsetsMake(20.0, 0, 20.0, 0.0)
         collectionView.contentInset = insets
         
-        characterManager.getCharactersFromJSONFile { (characterResult) -> Void in
+        characterManager.getCharacters { (characterResult) -> Void in
             switch characterResult {
             case let .success(characters):
                 
@@ -107,7 +107,11 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
                         cell.config(character: character, image: image)
                         print("Image saved in cache")
                         CharactersViewController.imageCache.setObject(image, forKey: imgUrl as AnyObject)
-                        collectionView.reloadData()
+                        
+                        DispatchQueue.main.async {
+                            collectionView.reloadData()
+                        }
+                        
                         
                     case let .failure(error):
                         cell.config(character: character, image: nil)
@@ -204,4 +208,8 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    @IBAction func reloadCollectionView(_ sender: Any) {
+        
+        collectionView.reloadData()
+    }
 }
