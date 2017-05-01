@@ -58,6 +58,11 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     //MARK: - COLLECTION VIEW DELEGATE METHODS 
     //TODO: - Extract these methods and create a DataSource file for the CollectionView.
     
@@ -206,10 +211,5 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
                 }
             }
         }
-    }
-    
-    @IBAction func reloadCollectionView(_ sender: Any) {
-        
-        collectionView.reloadData()
     }
 }

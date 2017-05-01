@@ -24,6 +24,8 @@ enum OrderBy: String {
 struct MarvelAPI {
 
     private static let baseURL = "https://gateway.marvel.com:443/v1/public/"
+    
+    //TODO: HIDE KEYS IN GITIGNORE FILE - not done on purpose here to let interviewer run the app. 
     private static let apiKey = "ae4fd56952df9c1455d573b2d4f3b93e"
     private static let privateKey = "b12605d9e7e21ecf3c3b00238633dd06efbd9037"
     

@@ -12,8 +12,10 @@ class CharacterDetailViewController: UIViewController {
 
     //MARK: - @IBOUTLETS
     
-    @IBOutlet weak var characterNameLabel: UILabel!
+    
     @IBOutlet weak var characterImageView: UIImageView!
+    @IBOutlet weak var characterDescriptionLabel: UILabel!
+    @IBOutlet weak var segementedControl: UISegmentedControl!
     
     //MARK: - VARIABLES
     
@@ -24,10 +26,18 @@ class CharacterDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        characterNameLabel.text = character.name
+        
+        navigationItem.title = character.name
+        characterDescriptionLabel.text = character.desc
         characterImageView.image = characterImage
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    
 
 }
