@@ -38,8 +38,8 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
         let insets = UIEdgeInsetsMake(20.0, 0, 20.0, 0.0)
         collectionView.contentInset = insets
         
+        
         self.spinner.startAnimating()
-
         
         characterManager.getCharacters { (characterResult) -> Void in
             
@@ -117,7 +117,6 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
                 //Downloading image for character
 
                 characterManager.fetchImage(for: character, completion: { (imageResult) in
-                   self.spinner.startAnimating()
                     switch imageResult {
                     case let .success(image):
                         cell.config(character: character, image: image)
