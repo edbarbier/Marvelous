@@ -143,6 +143,43 @@ class CharacterManager {
         return url
     }
     
+    func getCharacterItems(from character: Character, for category: String) -> [String] {
+        
+        var array = [String]()
+        
+        var request = [String:Any]()
+        
+        switch category {
+        case "comics":
+            request = character.comics
+        case "series":
+            request = character.series
+        case "stories":
+            request = character.stories
+        case "urls":
+            request = character.urls
+        default:
+            break
+        }
+        
+        if !request.isEmpty {
+            
+            let dictArray = request["items"] as! [[String:Any]]
+            
+            for dict in dictArray {
+                
+                for (key, value) in dict {
+                    
+                    if key == "name" {
+                        array.append(value as! String)
+                    }
+                }
+            }
+        }
+        
+        return array
+    }
+    
     
     
     

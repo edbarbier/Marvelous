@@ -23,6 +23,7 @@ import Foundation
 //MARK: - CELL IDENTIFIER 
 
     let CELL_CHARACTER = "CharacterCell"
+    let CELL_ITEM = "ItemCell"
 
 
 //MARK: - SEGUE IDENTIFIER 

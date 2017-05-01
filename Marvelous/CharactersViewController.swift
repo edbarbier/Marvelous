@@ -202,10 +202,12 @@ class CharactersViewController: UIViewController, UICollectionViewDelegate, UICo
                 
                 if let character = sender as? Character {
                     
+                    vc.characterManager = self.characterManager
                     vc.character = character
                     
                     let imgUrl = characterManager.getCharacterImgUrl(from: character)
                     let img = CharactersViewController.imageCache.object(forKey: imgUrl as AnyObject)
+                    
                     
                     vc.characterImage = img as! UIImage! 
                 }

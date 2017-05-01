@@ -118,6 +118,10 @@ struct MarvelAPI {
         if let name = json[KEY_NAME] as? String { characterDict[KEY_NAME] = name }
         if let desc = json[KEY_DESC] as? String { characterDict[KEY_DESC] = desc }
         if let thumbnail = json[KEY_THUMBNAILURL] as? [String:Any] { characterDict[KEY_THUMBNAILURL] = thumbnail }
+        if let comics = json[KEY_COMICS] as? [String:Any] { characterDict[KEY_COMICS] = comics }
+        if let series = json[KEY_SERIES] as? [String:Any] { characterDict[KEY_SERIES] = series }
+        if let stories = json[KEY_STORIES] as? [String:Any] { characterDict[KEY_STORIES] = stories }
+        if let urls = json[KEY_URLS] as? [String:Any] { characterDict[KEY_URLS] = urls }
         
         //TODO: Add the rest of the data 
         
