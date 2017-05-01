@@ -69,7 +69,7 @@ struct MarvelAPI {
             
             for jsonCharacter in jsonCharacters {
                 
-                if let character = character2(fromJSON: jsonCharacter) {
+                if let character = character(fromJSON: jsonCharacter) {
                     characters.append(character)
                 }
             }
@@ -90,26 +90,6 @@ struct MarvelAPI {
     
     //Creating Character object based on JSON
     static func character(fromJSON json: [String:Any]) -> Character? {
-        
-        guard
-            let id = json[KEY_ID] as? String,
-            let name = json[KEY_NAME] as? String,
-            let desc = json[KEY_DESC] as? String,
-            let thumbnailUrl = json[KEY_THUMBNAILURL] as? [String:Any],
-            let comics = json[KEY_COMICS] as? [String:Any],
-            let series = json[KEY_SERIES] as? [String:Any],
-            let stories = json[KEY_STORIES] as? [String:Any],
-            let urls = json[KEY_URLS] as? [String:Any]
-        
-        else {
-            print("Invalid object")
-            return nil
-        }
-        
-        return Character(id: id, name: name, desc: desc, thumbnailUrl: thumbnailUrl, comics: comics, series: series, stories: stories, urls: urls)
-    }
-    
-    static func character2(fromJSON json: [String:Any]) -> Character? {
         
         var characterId = String()
         var characterDict = Dictionary<String,Any>()
